@@ -79,9 +79,9 @@
             <%= f.fields_for :requests, wrapper_tag: 'tr' do |request_form| %>
                 <%= request_form.collection_select :department,  RefDepartment.order('name ASC'),  :name, :name,{},{ :class => "input-medium"}%>
                 <%= request_form.collection_select :hospital,  RefHospital.order('name ASC'),  :name, :name,{},{ :class => "input-medium"}%>
-                <%= request_form.text_field :beginDate, :class => "datefield input-small", :size => "16"  %>
+                <%= request_form.text_field :beginDate, :class => "datefield input-small", value: l(@student.arrivalDate), :size => "16"  %>
                 <span class="add-on"><i class="icon-calendar"></i></span>
-                <%= request_form.text_field :finishDate, :class => "datefield input-small", :size => "16"  %>
+                <%= request_form.text_field :finishDate, :class => "datefield input-small",value: l(@student.arrivalDate), :size => "16"  %>
                 <span class="add-on"><i class="icon-calendar"></i></span>
                 <%= request_form.link_to_remove '<i class="icon-remove"></i>'.html_safe %>
                 <br>

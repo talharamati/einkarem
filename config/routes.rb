@@ -12,6 +12,7 @@ Einkarem::Application.routes.draw do
   post "managment/createDepartment"
 
   put "managment/update/(:obj)/(:id)"  => 'managment#update', as: 'managment_update'
+  put "track/change/(:student)/(:task)"  => 'track#change', as: 'track_change'
   #put "ref_department/:id(.:format)"  => 'managment#update', as: 'ref_department'
 
   get "managment/destroy"

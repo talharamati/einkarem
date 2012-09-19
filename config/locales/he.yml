@@ -6,3 +6,14 @@ he:
   actions:
     cancel: "בטל"
     submit: "שלח"
+
+  tasks:
+    laundry: "הפקיד פקדון מכבסה"
+    library: "הפקיד פקדון ספרייה"
+    dorms: "מעונות"
+    payment: "תשלום"
+    libraryBack: "החזיר ספרייה"
+    laundryBack: "החזיר כביסה"
+
+  message:
+    entercomment: "(הכנס הערה)"
