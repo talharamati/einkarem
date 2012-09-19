@@ -76,7 +76,7 @@
               </thead>
             </table>
 
-            <%= f.fields_for :requests do |request_form| %>
+            <%= f.fields_for :requests, wrapper_tag: 'tr' do |request_form| %>
                 <%= request_form.collection_select :department,  RefDepartment.order('name ASC'),  :name, :name,{},{ :class => "input-medium"}%>
                 <%= request_form.collection_select :hospital,  RefHospital.order('name ASC'),  :name, :name,{},{ :class => "input-medium"}%>
                 <%= request_form.text_field :beginDate, :class => "datefield input-small", :size => "16"  %>

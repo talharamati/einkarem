@@ -25,4 +25,7 @@ $(function() {
     $.datepicker.setDefaults( $.datepicker.regional[ 'he' ] );
     $('.datefield').datepicker();
 
+    $('form').live('nested:fieldAdded', function(event) {
+        $(event.field).find('.datefield').removeClass('hasDatepicker').datepicker();
+    });
 });
