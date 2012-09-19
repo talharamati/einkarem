@@ -1,0 +1,85 @@
+<div class="container">
+
+  <div class="row">
+    <div class="span3">
+      <%= link_to 'צור סטודנט חדש', new_student_path, class: 'btn btn-large btn-primary span2 newstudent' %>
+
+    </div>
+    <div class="span9">
+      <div class="control-group">
+        <div class="controls">
+          <div class="input-append">
+            <%= form_tag students_path, :method => 'get' do %>
+                <p>
+                  <%= text_field_tag :search, params[:search], :class=>"span4 btn-large", :id=>"search", :placeholder=>"חיפוש לפי שם" %>
+                  <button type="submit" class="btn btn-large"><i class="icon-search"></i></button>
+                </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span3">
+      <div class="tabbable tabs-left filterslables">
+        <ul class="nav nav-tabs">
+          <li class=<%= 'active' if @active == 'by_country' %>>
+            <a><div class="li">
+              <h4>סנן לפי מדינה</h4>
+              <%= form_tag students_path, :method => 'get', :class => 'submit_on_change' do %>
+                  <p>
+                    <%= collection_select(:country_search, params[:country_search], Country.order('nameHeb ASC'), :id, :nameHeb, options = { :include_blank => "בחר מדינה", selected: params[:country_search]}, html_options = {:class => :span2, :id => 'country_search', :name => :country_search})  %>
+                  </p>
+              <% end %>
+            </div></a>
+          </li>
+          <li class="<%= 'active' if @active == 'by_status' %>">
+            <a><div class="li">
+              <h4>סנן לפי סטטוס</h4>
+              <%= form_tag students_path, :method => 'get', :class => 'submit_on_change' do %>
+                  <p>
+                    <%= select(:status_search, params[:status_search], options_for_select([['בטיפול', 'בטיפול'], ['אושר', 'אושר'], ['הגיע', 'הגיע'], ['סיים', 'סיים']]), options = { :include_blank => 'בחר סטטוס' },html_options = {:class => :span2, :id => 'status_search', :name => :status_search} ) %>
+
+                  </p>
+              <% end %>
+            </div></a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="span9">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>שם</th>
+          <th>תאריך הגעה</th>
+          <th>מדינה</th>
+          <th>סטטוס</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if @students %>
+            <% @students.each  do |s|%>
+                <tr class="clickable" onclick="location.href='<%= student_path(s) %>'">
+                  <td><%= s.name %></td>
+                  <td><%= s.arrivalDate %></td>
+                  <% country = Country.find(s.country) %>
+                  <td><%= country.name %></td>
+                  <td><%= s.status %></td>
+                </tr>
+            <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr>
+
+  <footer>
+    <p>&copy; Company 2012</p>
+  </footer>
+
+</div> <!-- /container -->

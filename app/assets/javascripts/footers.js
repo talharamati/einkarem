@@ -1,0 +1,9 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery.purr
+//= require ./vendor/jquery-ui-1.8.23.custom.min
+//= require ./vendor/jquery.ui.datepicker-he
+//= require ./vendor/bootstrap.min
+//= require best_in_place
+//= require jquery_nested_form
+//= require main

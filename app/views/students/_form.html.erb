@@ -1,0 +1,133 @@
+<div class="container f32">
+
+  <div class="topbar">
+    <%= link_to  '<i class="icon-remove"></i> '.html_safe+t('actions.cancel'), students_path, :class=>"floatleft"%>
+    <h2><%= @title %></h2>
+  </div>
+  <div class="row">
+    <div class="span10 offset1">
+      <div class="well">
+        <%= nested_form_for @student do |f| %>
+
+            <legend>פרטים אישיים</legend>
+            <div class="row-fluid">
+              <div class="span6">
+                <p>
+                  <label>שם מלא</label>
+                  <%= f.text_field :name %>
+                </p>
+                <p>
+                  <label>תאריך לידה</label>
+                <div class="input-append">
+                  <%= f.text_field :birthday, class: 'datefield', value: l(@student.birthday)  %>
+                  <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+                </p>
+                <p>
+                  <label>אוניברסיטה</label>
+                  <%= f.text_field :university %>
+                </p>
+                <p>
+                  <label>שפות</label>
+                  <%= f.text_field :languages %>
+                </p>
+                <p>
+                  <label>סכום לתשלום</label>
+                  <%= f.text_field :payment %>
+                </p>
+              </div>
+              <div class="span6">
+                <p>
+                  <label>מדינה</label>
+                  <%= f.collection_select :country,  Country.order('nameHeb ASC') ,  :id, :nameHeb%>
+                </p>
+                <p>
+                  <label>תאריך הגעה</label>
+                <div class="input-append">
+                  <%= f.text_field :arrivalDate, class: 'datefield', value: l(@student.arrivalDate)  %>
+                  <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+                </p>
+                <p>
+                  <label>שנת לימודים</label>
+                  <%= select_tag("student[year]", options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6]], @student.year))%>
+                </p>
+                <p>
+                  <label>מחלקות שביצע בעבר</label>
+                  <%= f.text_field :pastDepartments %>
+                </p>
+                <p>
+                  <label>מספר דרכון</label>
+                  <%= f.text_field :passport %>
+                </p>
+              </div>
+            </div>
+
+            <legend>בקשות</legend>
+
+            <table class="table table-condensed">
+              <thead>
+              <tr>
+                <th>מחלקה</th>
+                <th>בית חולים</th>
+                <th>ת. התחלה</th>
+                <th>ת. סיום</th>
+              </tr>
+              </thead>
+            </table>
+
+            <%= f.fields_for :requests do |request_form| %>
+                <%= request_form.collection_select :department,  RefDepartment.order('name ASC'),  :name, :name,{},{ :class => "input-medium"}%>
+                <%= request_form.collection_select :hospital,  RefHospital.order('name ASC'),  :name, :name,{},{ :class => "input-medium"}%>
+                <%= request_form.text_field :beginDate, :class => "datefield input-small", :size => "16"  %>
+                <span class="add-on"><i class="icon-calendar"></i></span>
+                <%= request_form.text_field :finishDate, :class => "datefield input-small", :size => "16"  %>
+                <span class="add-on"><i class="icon-calendar"></i></span>
+                <%= request_form.link_to_remove '<i class="icon-remove"></i>'.html_safe %>
+                <br>
+            <% end %>
+            <p><%= f.link_to_add "הוסף בקשה", :requests %></p>
+
+            <legend>קבצים מצורפים</legend>
+            <div class="row-fluid">
+              <div class="span6">
+                <p>
+                  <label>תמונת פספורט</label>
+                  <%= f.file_field :photo %>
+                </p>
+                <p>
+                  <label>טופס אישור לימודים</label>
+                  <%= f.file_field :study_approval %>
+                </p>
+              </div>
+              <div class="span6">
+                <p>
+                  <label>טופס בקשה</label>
+                  <%= f.file_field :request_form %>
+                </p>
+                <p>
+                  <label>טופס מעונות</label>
+                  <%= f.file_field :dorms_form %>
+                </p>
+              </div>
+            </div>
+
+
+            <legend></legend>
+            <p style="text-align: center">
+              <br/><span style="margin-left: 20px;">    <%= link_to  '<i class="icon-remove"></i> בטל'.html_safe, students_path, :class=>"floatleft"%></span>
+              <button type="submit" class="btn btn btn-success "><i class="icon-ok icon-white"></i> שמור</button>
+            </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <footer>
+    <p>&copy; Company 2012</p>
+  </footer>
+
+</div> <!-- /container -->
+</html>

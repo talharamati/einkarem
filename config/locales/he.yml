@@ -1,0 +1,8 @@
+he:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+
+  actions:
+    cancel: "בטל"
+    submit: "שלח"

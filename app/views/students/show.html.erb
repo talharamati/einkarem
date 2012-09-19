@@ -1,0 +1,194 @@
+<%= stylesheet_link_tag 'vendor/flags32' %>
+<div class="container f32">
+
+  <div class="topbar">
+    <div class="btn-group floatleft">
+      <%= link_to '<i class="icon-edit"></i> ערוך'.html_safe, edit_student_path(@student), class: 'btn' %>
+      <%= link_to '<i class="icon-trash icon-white"></i> מחק'.html_safe, @student, :method => :delete, data: { confirm: 'האם אתה בטוח שברצונך למחק את הסטודנט מהמערכת?' }, class: "btn btn-danger" %>
+
+    </div>
+    <% country = Country.find(@student.country) %>
+    <% flagCode = "flag #{country.code}".downcase %>
+    <h2><%= @student.name %> <span class="country">(<i class='<%=flagCode%>'></i> <%= country.nameHeb %>)</span></h2>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <div class="well">
+        <span class="status">סטטוס:
+          <%= best_in_place @student, :status, :type => :select, :collection => [["בטיפול", "בטיפול"], ["אושר", "אושר"], ["הגיע", "הגיע"], ["סיים", "סיים"]], :activator => "#editme7" %>
+        </span>
+        <a id="editme7" href="#">(עדכן)</a>
+        <hr/>
+        <h4>משימות</h4>
+        <table class="table">
+
+          <% cls = '' %><% icon = '"icon-ok"' %>
+          <% if @student.track.dorms %>
+              <% cls = 'success' %><% icon = '"icon-remove"' %>
+          <% end %>
+          <tr class=<%= cls  %>>
+            <td>
+              <span><b>ביקש מעונות</b></span><br/>
+              <a id="editme1" href="#"><i class="icon-pencil"></i></a>
+              <%= best_in_place @student.track, :dormsC, :path => @student , :activator => "#editme1" %>
+            </td>
+            <td>
+              <%= link_to  ('<i class='+icon+'/>').html_safe,track_changeDorms_path(:student=>@student), :method => :post,  :class => "btn btn-small"%>
+            </td>
+          </tr>
+
+          <% if @student.payment? %>
+              <% cls = '' %><% icon = '"icon-ok"' %>
+              <% if @student.track.payment %>
+                  <% cls = 'success' %><% icon = '"icon-remove"' %>
+              <% end %>
+              <tr class=<%= cls  %>>
+                <td>
+                  <span><b>שילם (<%= @student.payment %>)</b></span><br/>
+                  <a id="editme2" href="#"><i class="icon-pencil"></i></a>
+                  <%= best_in_place @student.track, :paymentC, :path => @student , :activator => "#editme2" %>
+                </td>
+                <td>
+                  <%= link_to  ('<i class='+icon+'</i>').html_safe,track_changePayment_path(:student=>@student), :method => :post,  :class => "btn btn-small"%>
+                </td>
+              </tr>
+          <% end %>
+
+          <% cls = '' %><% icon = '"icon-ok"' %>
+          <% if @student.track.laundry %>
+              <% cls = 'success' %><% icon = '"icon-remove"' %>
+          <% end %>
+          <tr class=<%= cls  %>>
+            <td>
+              <span><b>הפקיד פקדון מכבסה</b></span><br/>
+              <a id="editme3" href="#"><i class="icon-pencil"></i></a>
+              <%= best_in_place @student.track, :laundryC, :path => @student , :activator => "#editme3" %>
+            </td>
+            <td>
+              <%= link_to  ('<i class='+icon+'</i>').html_safe,track_changeLaundry_path(:student=>@student), :method => :post,  :class => "btn btn-small"%>
+            </td>
+          </tr>
+
+          <% cls = '' %><% icon = '"icon-ok"' %>
+          <% if @student.track.library %>
+              <% cls = 'success' %><% icon = '"icon-remove"' %>
+          <% end %>
+          <tr class=<%= cls  %>>
+            <td>
+              <span><b>הפקיד פקדון ספריה</b></span><br/>
+              <a id="editme4" href="#"><i class="icon-pencil"></i></a>
+              <%= best_in_place @student.track, :libraryC, :path => @student , :activator => "#editme4" %>
+            </td>
+            <td>
+              <%= link_to  ('<i class='+icon+'</i>').html_safe,track_changeLibrary_path(:student=>@student), :method => :post,  :class => "btn btn-small"%>
+            </td>
+          </tr>
+
+          <% if @student.track.laundry? %>
+              <% cls = '' %><% icon = '"icon-ok"' %>
+              <% if @student.track.laundryBack %>
+                  <% cls = 'success' %><% icon = '"icon-remove"' %>
+              <% end %>
+              <tr class=<%= cls  %>>
+                <td>
+                  <span><b>אסף פקדון מכבסה</b></span><br/>
+                  <a id="editme5" href="#"><i class="icon-pencil"></i></a>
+                  <%= best_in_place @student.track, :laundryBackC, :path => @student , :activator => "#editme5" %>
+                </td>
+                <td>
+                  <%= link_to  ('<i class='+icon+'</i>').html_safe,track_changeLaundryBack_path(:student=>@student), :method => :post,  :class => "btn btn-small"%>
+                </td>
+              </tr>
+          <% end %>
+
+          <% if @student.track.library? %>
+              <% cls = '' %><% icon = '"icon-ok"' %>
+              <% if @student.track.libraryBack %>
+                  <% cls = 'success' %><% icon = '"icon-remove"' %>
+              <% end %>
+              <tr class=<%= cls  %>>
+                <td>
+                  <span><b>אסף פקדון ספריה</b></span><br/>
+                  <a id="editme6" href="#"><i class="icon-pencil"></i></a>
+                  <%= best_in_place @student.track, :libraryBackC, :path => @student , :activator => "#editme6" %>
+                </td>
+                <td>
+                  <%= link_to  ('<i class='+icon+'</i>').html_safe,track_changeLibraryBack_path(:student=>@student), :method => :post,  :class => "btn btn-small"%>
+                </td>
+              </tr>
+          <% end %>
+
+
+        </table>
+      </div>
+    </div>
+    <div class="span8">
+      <div class="well">
+        <% if @student.photo? %>
+            <a href="<%= @student.photo.url %>"><%= image_tag @student.photo.url, :class => 'passportimg' %></a>
+        <% end %>
+        <h3 class="nospace">פרטים אישיים</h3>
+        <ul>
+          <li><b>דרכון:</b> <%=@student.passport %></li>
+          <li><b>תאריך לידה:</b><% if @student.birthday %> <%= l(@student.birthday) %>  (גיל: <%= @student.age  %>) <% end %> </li>
+          <li><b>אוניברסיטה:</b> <%= @student.university %></li>
+          <li><b>שנת לימודים:</b> <%= @student.year %></li>
+          <li><b>תאריך הגעה:</b> <%= l(@student.arrivalDate) %></li>
+          <li><b>שפות:</b> <%= @student.languages %></li>
+          <li><b>מחלקות שביצע בעבר:</b> <%= @student.pastDepartments %></li>
+        </ul>
+        <div class="row-fluid centered">
+          <% if @student.study_approval? %>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> טופס אישור לימודים'.html_safe, @student.study_approval.url  %></div>
+          <% end %>
+          <% if @student.request_form? %>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> טופס בקשה'.html_safe, @student.request_form.url  %></div>
+          <% end %>
+          <% if @student.dorms_form? %>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> טופס מעונות'.html_safe, @student.dorms_form.url  %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="well">
+        <h3 class="nospace">בקשות</h3>
+        <table class="table table-condensed">
+          <thead>
+          <tr>
+            <th>מחלקה</th>
+            <th>בית חולים</th>
+            <th>ת. התחלה</th>
+            <th>ת. סיום</th>
+            <th>סטטוס</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% if @student.requests %>
+              <% @student.requests.each  do |r|%>
+                  <tr>
+                    <td><%= r.department %></td>
+                    <td><%= r.hospital %></td>
+                    <td><%= r.beginDate %></td>
+                    <td><%= r.finishDate %></td>
+                    <td>
+                      <%= best_in_place r, :status,:path => student_path, :type => :select, :collection => [[1, "ממתין"], [2, "בטיפול"], [3, "אושר"], [4, "נדחה"]] %>
+                    </td>
+                  </tr>
+              <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <footer>
+    <p>&copy; Company 2012</p>
+  </footer>
+
+</div> <!-- /container -->
+
+<script>
+
+</script>

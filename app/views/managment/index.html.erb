@@ -1,0 +1,85 @@
+<div class="container">
+
+  <div class="row">
+    <div class="span6">
+      <div class="well">
+        <h3>ניהול רשימת בתי חולים</h3>
+        <span>שים לב, שינוי שם בית חולים יעדכן גם את כל הבקשות שנוצרו בעבר לבית חולים זה.</span>
+        <hr/>
+        <p id="notice"><%= notice %></p>
+        <table class="table">
+          <thead>
+          <tr>
+            <th class="span4">שם</th>
+            <th>פעולות</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% if @hospitals %>
+              <% @hospitals.each  do |d|%>
+                  <tr>
+                    <td><%= best_in_place d, :name, :path => managment_update_path(obj: 'hospital', id: d.id), :activator => "#editHospital#{d.id}" %></td>
+                    <td><a id="<%= "editHospital#{d.id}" %>"  href="#">עריכה</a></td>
+                  </tr>
+              <% end %>
+          <% end %>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="2">
+              <%= form_for(@newHospital, url: managment_createHospital_path, html: {class: 'form-inline'}) do |f| %>
+                  <%= f.text_field :name %>
+                  <%= f.submit 'הוסף', class: 'btn' %>
+              <% end %>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+    <div class="span6">
+      <div class="well">
+        <h3>ניהול רשימת מחלקות</h3>
+        <span>שים לב, שינוי שם מחלקה יעדכן גם את כל הבקשות שנוצרו בעבר למחלקה זו.</span>
+        <hr/>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>שם</th>
+            <th>פעולות</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% if @departments %>
+              <% @departments.each  do |d|%>
+                  <tr>
+                    <td><%= best_in_place d, :name, :path => managment_update_path(obj: 'department', id: d.id), :activator => "#editDepartment#{d.id}" %></td>
+                    <td><a id="<%= "editDepartment#{d.id}" %>"  href="#">עריכה</a></td>
+                  </tr>
+              <% end %>
+          <% end %>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="2">
+              <%= form_for(@newDepartment, url: managment_createDepartment_path, html: {class: 'form-inline'}) do |f| %>
+                  <%= f.text_field :name %>
+                  <%= f.submit 'הוסף', class: 'btn' %>
+              <% end %>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <footer>
+    <p>&copy; Company 2012</p>
+  </footer>
+
+</div> <!-- /container -->

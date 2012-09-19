@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  country: MyString
+  passport: MyString
+  birthday: 2012-09-11
+  university: MyString
+  year: 1
+  arrivalDate: 2012-09-11
+  languages: MyString
+  pastDepartments: MyString
+
+two:
+  name: MyString
+  country: MyString
+  passport: MyString
+  birthday: 2012-09-11
+  university: MyString
+  year: 1
+  arrivalDate: 2012-09-11
+  languages: MyString
+  pastDepartments: MyString

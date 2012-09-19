@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/bootstrap-rtl.min.css">
+        <!--<link rel="stylesheet" href="css/bootstrap-responsive.min.css">-->
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#"><img src="img/einkarem_logo.png"/> ניהול חילופי סטודנטים</a>
+                    <div class="nav-collapse collapse">
+                        <div class="btn-group pull-right">
+                            <a class="btn"><i class="icon-wrench"></i> ניהול</a>
+                            <a class="btn"><i class="icon-share-alt"></i> יציאה</a>
+                        </div>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="span3">
+                    <a class="btn btn-large btn-primary span2 newstudent">צור סטודנט חדש</a>
+                </div>
+                <div class="span9">
+                    <div class="control-group">
+                        <div class="controls">
+                            <div class="input-append">
+                                <input class="span4 btn-large" id="search" type="text" placeholder="חיפוש לפי שם">
+                                <span class="add-on btn-large"><i class="icon-search"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span3">
+                    <div class="tabbable tabs-left filterslables">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a><div class="li">
+                                    <h4>סנן לפי מדינה</h4>
+                                    <select class="span2">
+                                        <option>גרמניה</option>
+                                        <option>הולנד</option>
+                                    </select>
+                                </div></a>
+                            </li>
+                            <li class="<%= 'active' if @active == 'by_status' %>">
+                                <a><div class="li">
+                                    <h4>סנן לפי סטטוס</h4>
+                                    <ul>
+                                        <li><input type="radio" value="בטיפול"/> בטיפול</li>
+                                        <li><input type="radio" value="אושר"/> אושר</li>
+                                        <li><input type="radio" value="הגיע"/> הגיע</li>
+                                        <li><input type="radio" value="סיים"/> סיים</li>
+                                    </ul>
+                                </div></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="span9">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>שם</th>
+                            <th>תאריך הגעה</th>
+                            <th>מדינה</th>
+                            <th>סטטוס</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Barak Argaman</td>
+                            <td>9/8/12</td>
+                            <td>ישראל</td>
+                            <td>הגיע</td>
+                        </tr>
+                        <tr>
+                            <td>Barak Argaman</td>
+                            <td>9/8/12</td>
+                            <td>ישראל</td>
+                            <td>הגיע</td>
+                        </tr>
+                        <tr>
+                            <td>Barak Argaman</td>
+                            <td>9/8/12</td>
+                            <td>ישראל</td>
+                            <td>הגיע</td>
+                        </tr>
+                        <tr>
+                            <td>Barak Argaman</td>
+                            <td>9/8/12</td>
+                            <td>ישראל</td>
+                            <td>הגיע</td>
+                        </tr>
+                        <tr>
+                            <td>Barak Argaman</td>
+                            <td>9/8/12</td>
+                            <td>ישראל</td>
+                            <td>הגיע</td>
+                        </tr>
+                        <tr>
+                            <td>Barak Argaman</td>
+                            <td>9/8/12</td>
+                            <td>ישראל</td>
+                            <td>הגיע</td>
+                        </tr>
+                        <tr>
+                            <td>Barak Argaman</td>
+                            <td>9/8/12</td>
+                            <td>ישראל</td>
+                            <td>הגיע</td>
+                        </tr>
+                        <tr>
+                            <td>Barak Argaman</td>
+                            <td>9/8/12</td>
+                            <td>ישראל</td>
+                            <td>הגיע</td>
+                        </tr>
+                        <tr>
+                            <td>Barak Argaman</td>
+                            <td>9/8/12</td>
+                            <td>ישראל</td>
+                            <td>הגיע</td>
+                        </tr>
+                        <tr>
+                            <td>Barak Argaman</td>
+                            <td>9/8/12</td>
+                            <td>ישראל</td>
+                            <td>הגיע</td>
+                        </tr>
+                        <tr>
+                            <td>Barak Argaman</td>
+                            <td>9/8/12</td>
+                            <td>ישראל</td>
+                            <td>הגיע</td>
+                        </tr>
+                        </tbody>
+                    </table>
+               </div>
+            </div>
+
+            <hr>
+
+            <footer>
+                <p>&copy; Company 2012</p>
+            </footer>
+
+        </div> <!-- /container -->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>

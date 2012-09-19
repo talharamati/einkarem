@@ -1,0 +1,25 @@
+<div class="container">
+
+  <div class="row">
+    <div class="span6 offset3">
+      <div class="hero-unit login">
+        <a class="brand" href="#"><%= image_tag 'einkarem_logo.png' %> ניהול חילופי סטודנטים</a>
+        <hr/>
+        <%= form_tag log_in_path do %>
+            <%= text_field_tag :username, params[:username], :class => "span2", :placeholder =>"שם משתמש"  %>
+            <%= password_field_tag  :password, params[:username], :class => "span2", :placeholder =>"סיסמה " %>
+            <button type="submit" class="btn">כניסה</button>
+            <% flash.each do |name, msg| %>
+                <%= content_tag :div, msg, :id => "flash#{name}" %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <footer>
+    <p>&copy; Company 2012</p>
+  </footer>
+
+</div> <!-- /container -->
