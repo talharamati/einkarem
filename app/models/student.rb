@@ -6,10 +6,21 @@ class Student < ActiveRecord::Base
   has_one :track,  :dependent=>:destroy
   accepts_nested_attributes_for :requests, :allow_destroy => true
 
-  has_attached_file :photo
-  has_attached_file :study_approval
-  has_attached_file :request_form
-  has_attached_file :dorms_form
+  has_attached_file :photo,
+                    :storage => :dropbox,
+                    dropbox_credentials: "#{Rails.root}/config/dropbox.yml",
+                    :dropbox_options => {
+                        :path => proc { |style| "#{style}/#{id}_#{photo.original_filename}"}
+                    }
+  has_attached_file :study_approval,
+                    :storage => :dropbox,
+                    :dropbox_credentials => "#{Rails.root}/config/dropbox.yml"
+  has_attached_file :request_form,
+                    :storage => :dropbox,
+                    :dropbox_credentials => "#{Rails.root}/config/dropbox.yml"
+  has_attached_file :dorms_form,
+                    :storage => :dropbox,
+                    :dropbox_credentials => "#{Rails.root}/config/dropbox.yml"
 
   before_save :default_values
 

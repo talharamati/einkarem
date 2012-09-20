@@ -29,3 +29,6 @@ end
 gem 'jquery-rails'
 gem 'best_in_place'
 gem 'nested_form'
+
+#gem 'dropbox-sdk'
+gem "paperclip-dropbox"
