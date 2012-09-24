@@ -33,7 +33,7 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @title = "יצירת סטודנט חדש"
-   @student.requests.build
+    @student.requests.build
 
 
     respond_to do |format|

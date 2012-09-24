@@ -1,5 +1,21 @@
 class Student < ActiveRecord::Base
-  attr_accessible :arrival_date, :birthday, :country, :languages, :name, :passport, :past_departments, :university, :year, :photo, :study_approval, :request_form, :dorms_form, :status, :payment, :requests_attributes
+  attr_accessible :arrival_date,
+                  :birthday,
+                  :country,
+                  :languages,
+                  :name,
+                  :passport,
+                  :past_departments,
+                  :university,
+                  :year,
+                  :photo,
+                  :study_approval,
+                  :request_form,
+                  :dorms_form,
+                  :status,
+                  :payment,
+                  :requests_attributes
+
   has_many :requests,  :dependent=>:destroy
   has_one :track,  :dependent=>:destroy
   accepts_nested_attributes_for :requests, :allow_destroy => true

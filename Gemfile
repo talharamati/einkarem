@@ -32,3 +32,5 @@ gem 'nested_form'
 
 #gem 'dropbox-sdk'
 gem "paperclip-dropbox"
+
+gem 'thin' # web server
