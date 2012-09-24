@@ -4,9 +4,6 @@ class CreateCountries < ActiveRecord::Migration
       t.string :nameHeb
       t.string :name
       t.string :code
-
-
-      t.timestamps
     end
   end
 end

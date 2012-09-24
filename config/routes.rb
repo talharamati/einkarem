@@ -31,7 +31,7 @@ Einkarem::Application.routes.draw do
 
   get "log_out" => "sessions#destroy", :as => "log_out"
   post "" => "sessions#create", as: "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
+  # get "sign_up" => "users#new", :as => "sign_up"
   resources :users
   resources :sessions
 

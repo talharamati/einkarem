@@ -11,7 +11,6 @@ class CreateStudents < ActiveRecord::Migration
       t.string :languages
       t.string :pastDepartments
       t.string :status
-      t.integer :payment
 
       t.timestamps
     end

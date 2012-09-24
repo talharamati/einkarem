@@ -13,26 +13,14 @@
 
 ActiveRecord::Schema.define(:version => 20120917055551) do
 
-# Could not dump table "countries" because of following StandardError
-#   Unknown type '' for column 'code'
-
-  create_table "countries1", :force => true do |t|
-    t.string   "name_eng",   :limit => nil
-    t.string   "code"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "managments", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "countries", :force => true do |t|
+    t.string "nameHeb"
+    t.string "name"
+    t.string "code"
   end
 
   create_table "ref_departments", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "name"
   end
 
   create_table "ref_hospitals", :force => true do |t|
@@ -47,21 +35,12 @@ ActiveRecord::Schema.define(:version => 20120917055551) do
     t.date     "beginDate"
     t.date     "finishDate"
     t.integer  "student_id"
+    t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   add_index "requests", ["student_id"], :name => "index_requests_on_student_id"
-
-  create_table "resources", :force => true do |t|
-    t.string   "path"
-    t.string   "type"
-    t.integer  "student_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "resources", ["student_id"], :name => "index_resources_on_student_id"
 
   create_table "students", :force => true do |t|
     t.string   "name"
@@ -74,8 +53,8 @@ ActiveRecord::Schema.define(:version => 20120917055551) do
     t.string   "languages"
     t.string   "pastDepartments"
     t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
