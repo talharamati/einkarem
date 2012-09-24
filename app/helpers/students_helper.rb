@@ -16,9 +16,9 @@ end
 
   def print_tasks(student)
     output = ''
-    ['dorms', 'payment', 'laundry', 'library', 'laundryBack', 'libraryBack'].each do |t|
-      output += print_task(student, t) unless (t == 'laundryBack' and !student.track['laundry']) or
-          (t == 'libraryBack' and !student.track['library'])
+    ['dorms', 'payment', 'laundry', 'library', 'laundry_back', 'library_back'].each do |t|
+      output += print_task(student, t) unless (t == 'laundry_back' and !student.track['laundry']) or
+          (t == 'library_back' and !student.track['library'])
     end
     output.html_safe
   end

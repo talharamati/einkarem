@@ -26,9 +26,8 @@ class ManagmentController < ApplicationController
     if @newHospital.save
       redirect_to managment_index_path
     else
-      flash.now.alert = "Invalid name"
-      render "index"
-      #redirect_to action: 'index', notice: 'illegal name'
+      #flash.now.alert = "Invalid name"
+      redirect_to action: 'index'#, notice: 'illegal name'
     end
   end
 
@@ -37,8 +36,8 @@ class ManagmentController < ApplicationController
     if @newDepartment.save
       redirect_to managment_index_path
     else
-      flash.now.alert = "Invalid name"
-      render "index"
+      #flash.now.alert = "Invalid name"
+      redirect_to action: 'index'
     end
   end
 

@@ -20,6 +20,8 @@ class StudentsController < ApplicationController
   def show
     @student = Student.find(params[:id])
 
+    _load_constants
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @student }
@@ -98,5 +100,29 @@ class StudentsController < ApplicationController
     else
       respond_with_bip(@request)
     end
+  end
+
+  private
+
+  def _load_constants
+    request_statuses = {
+        pending: {
+            id: 1,
+            title: t('requests.statuses.pending')
+        },
+        treatment: {
+            id: 2,
+            title: t('requests.statuses.treatment')
+        },
+        approved: {
+            id: 3,
+            title: t('requests.statuses.approved')
+        },
+        declined: {
+            id: 4,
+            title: t('requests.statuses.declined')
+        }
+    }
+    @request_statuses_array = request_statuses.values.map { |a| a.values }
   end
 end

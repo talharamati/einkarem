@@ -4,12 +4,12 @@
   <div class="topbar">
     <div class="btn-group floatleft">
       <%= link_to '<i class="icon-edit"></i> ערוך'.html_safe, edit_student_path(@student), class: 'btn' %>
-      <%= link_to '<i class="icon-trash icon-white"></i> מחק'.html_safe, @student, :method => :delete, data: { confirm: t("students.deleteConfirm") }, class: "btn btn-danger" %>
+      <%= link_to '<i class="icon-trash icon-white"></i> מחק'.html_safe, @student, :method => :delete, data: { confirm: t("students.delete_confirm") }, class: "btn btn-danger" %>
 
     </div>
     <% country = Country.find(@student.country) %>
     <% flagCode = "flag #{country.code}".downcase %>
-    <h2><%= @student.name %> <span class="country">(<i class='<%=flagCode%>'></i> <%= country.nameHeb %>)</span></h2>
+    <h2><%= @student.name %> <span class="country">(<i class='<%=flagCode%>'></i> <%= country.name_heb %>)</span></h2>
   </div>
   <div class="row">
     <div class="span4">
@@ -36,19 +36,19 @@
           <li><b><%= t("students.birthday") %>: </b><%= ldate(@student.birthday) %> <%= printAge(@student)  %> </li>
           <li><b><%= t("students.university") %>: </b> <%= @student.university %></li>
           <li><b><%= t("students.year") %>: </b> <%= @student.year %></li>
-          <li><b><%= t("students.arrivalDate") %>: </b><%= ldate(@student.arrivalDate) %></li>
+          <li><b><%= t("students.arrival_date") %>: </b><%= ldate(@student.arrival_date) %></li>
           <li><b><%= t("students.languages") %>: </b> <%= @student.languages %></li>
-          <li><b><%= t("students.pastDepartments") %></b>: <%= @student.pastDepartments %></li>
+          <li><b><%= t("students.past_departments") %></b>: <%= @student.past_departments %></li>
         </ul>
         <div class="row-fluid centered">
           <% if @student.study_approval? %>
-              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.studyApproval"), @student.study_approval.url  %></div>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.study_approval"), @student.study_approval.url  %></div>
           <% end %>
           <% if @student.request_form? %>
-              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.requestForm"), @student.request_form.url  %></div>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.request_form"), @student.request_form.url  %></div>
           <% end %>
           <% if @student.dorms_form? %>
-              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.dormsForm"), @student.dorms_form.url  %></div>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.dorms_form"), @student.dorms_form.url  %></div>
           <% end %>
         </div>
       </div>
@@ -59,8 +59,8 @@
           <tr>
             <th><%= t("requests.department") %></th>
             <th><%= t("requests.hospital") %></th>
-            <th><%= t("requests.beginDate") %></th>
-            <th><%= t("requests.finishDate") %></th>
+            <th><%= t("requests.begin_date") %></th>
+            <th><%= t("requests.finish_date") %></th>
             <th><%= t("requests.status") %></th>
           </tr>
           </thead>
@@ -70,10 +70,10 @@
                   <tr>
                     <td><%= r.department %></td>
                     <td><%= r.hospital %></td>
-                    <td><%= r.beginDate %></td>
-                    <td><%= r.finishDate %></td>
+                    <td><%= r.begin_date %></td>
+                    <td><%= r.finish_date %></td>
                     <td>
-                      <%= best_in_place r, :status,:path => student_updateRequest_path(r.id), :type => :select, :collection => [[1, "ממתין"], [2, "בטיפול"], [3, "אושר"], [4, "נדחה"]],html_attrs: { class: 'input-small' }, :activator => "#edit#{r.id}" %>
+                      <%= best_in_place r, :status,:path => student_updateRequest_path(r.id), :type => :select, :collection => @request_statuses_array ,html_attrs: { class: 'input-small' }, :activator => "#edit#{r.id}" %>
                       <a id="edit<%=r.id %>"  href="#">(<%= t("actions.update") %>)</a>
                     </td>
                   </tr>

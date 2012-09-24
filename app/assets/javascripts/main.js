@@ -23,6 +23,12 @@ $(function() {
     jQuery(".best_in_place").best_in_place();
 
     $.datepicker.setDefaults( $.datepicker.regional[ 'he' ] );
+    $('.datefield_past').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        minDate: '-60y',
+        yearRange: '-60:+0'
+    });
     $('.datefield').datepicker();
 
     $('form').live('nested:fieldAdded', function(event) {

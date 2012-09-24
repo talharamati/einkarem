@@ -1,7 +1,5 @@
-# coding: utf-8
-
 class Student < ActiveRecord::Base
-  attr_accessible :arrivalDate, :birthday, :country, :languages, :name, :passport, :pastDepartments, :university, :year, :photo, :study_approval, :request_form, :dorms_form, :status, :payment, :requests_attributes
+  attr_accessible :arrival_date, :birthday, :country, :languages, :name, :passport, :past_departments, :university, :year, :photo, :study_approval, :request_form, :dorms_form, :status, :payment, :requests_attributes
   has_many :requests,  :dependent=>:destroy
   has_one :track,  :dependent=>:destroy
   accepts_nested_attributes_for :requests, :allow_destroy => true
@@ -14,22 +12,24 @@ class Student < ActiveRecord::Base
   before_save :default_values
 
   def default_values
-      self.status= "בטיפול" if !self.status
+      self.status= I18n.t('students.statuses.treatment') if !self.status
       self.payment= '0' if !self.payment
   end
 
 
 
   def self.search(search, countrySearch, statusSearch)
-    if search
-      find(:all, :conditions => ['name LIKE ?', "%#{search}%"], order: 'arrivalDate')
-    else if countrySearch
-           find(:all, :conditions => ['country LIKE ?', "#{countrySearch}"], order: 'arrivalDate')
-    else  if statusSearch
-            find(:all, :conditions => ['status LIKE ?', "#{statusSearch}"], order: 'arrivalDate')
-          else
-            find(:all, :conditions => ['status NOT LIKE ?', "סיים"], order: 'arrivalDate')
-      end
+    unless search.nil?
+      find(:all, conditions => ['name LIKE ?', "%#{search}%"], :order => 'arrival_date')
+    else
+      unless countrySearch.nil?
+        find(:all, :conditions => ['country LIKE ?', "#{countrySearch}"], :order => 'arrival_date')
+      else
+        unless statusSearch.nil?
+          find(:all, :conditions => ['status LIKE ?', "#{statusSearch}"], :order => 'arrival_date')
+        else
+          find(:all, :conditions => ['status NOT LIKE ?', I18n.t('students.statuses.finished')], :order => 'arrival_date')
+        end
       end
     end
   end

@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917055551) do
+ActiveRecord::Schema.define(:version => 20120924181804) do
 
   create_table "countries", :force => true do |t|
-    t.string "nameHeb"
+    t.string "name_heb"
     t.string "name"
     t.string "code"
   end
@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(:version => 20120917055551) do
   create_table "requests", :force => true do |t|
     t.string   "department"
     t.string   "hospital"
-    t.date     "beginDate"
-    t.date     "finishDate"
+    t.date     "begin_date"
+    t.date     "finish_date"
     t.integer  "student_id"
     t.string   "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "requests", ["student_id"], :name => "index_requests_on_student_id"
@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(:version => 20120917055551) do
     t.date     "birthday"
     t.string   "university"
     t.integer  "year"
-    t.date     "arrivalDate"
+    t.date     "arrival_date"
     t.string   "languages"
-    t.string   "pastDepartments"
+    t.string   "past_departments"
     t.string   "status"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
@@ -79,17 +79,17 @@ ActiveRecord::Schema.define(:version => 20120917055551) do
     t.boolean  "payment"
     t.boolean  "laundry"
     t.boolean  "library"
-    t.boolean  "laundryBack"
-    t.boolean  "libraryBack"
-    t.string   "dormsC"
-    t.string   "paymentC"
-    t.string   "laundryC"
-    t.string   "libraryC"
-    t.string   "laundryBackC"
-    t.string   "libraryBackC"
+    t.boolean  "laundry_back"
+    t.boolean  "library_back"
+    t.string   "dorms_c"
+    t.string   "payment_c"
+    t.string   "laundry_c"
+    t.string   "library_c"
+    t.string   "laundry_back_c"
+    t.string   "library_back_c"
     t.integer  "student_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "tracks", ["student_id"], :name => "index_tracks_on_student_id"
