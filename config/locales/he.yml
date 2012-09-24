@@ -5,15 +5,76 @@ he:
 
   actions:
     cancel: "בטל"
-    submit: "שלח"
+    submit: "שמור"
 
+    update: "עדכן"
+    edit: "ערוך"
   tasks:
     laundry: "הפקיד פקדון מכבסה"
     library: "הפקיד פקדון ספרייה"
-    dorms: "מעונות"
-    payment: "תשלום"
-    libraryBack: "החזיר ספרייה"
-    laundryBack: "החזיר כביסה"
+    dorms: "ביקש מעונות"
+    payment: "שילם"
+    libraryBack: "אסף פקדון ספריה"
+    laundryBack: "אסף פקדון מכבסה"
 
+    title: "משימות"
+  students:
+    details: "פרטים אישיים"
+
+    fullName: "שם מלא"
+    birthday: "תאריך לידה"
+    university: "אוניברסיטה"
+    languages: "שפות"
+    payment: "סכום לשתלום"
+    country: "מדינה"
+    arrivalDate: "תאריך הגעה"
+    year: "שנת לימודים"
+    passport: "מספר דרכון"
+    statuses:
+      treatment: "בטיפול"
+      confirmed: "אושר"
+      came: "הגיע"
+      finished: "סיים"
+    name: "שם"
+    status: "סטטוס"
+    deleteConfirm: "האם אתה בטוח שברצונך למחוק את הסטודנט מהמערכת?"
+    age: "גיל"
+    pastDepartments: "מחלקות שביצע בעבר"
   message:
     entercomment: "(הכנס הערה)"
+  requests:
+    title: "בקשות"
+    department: "מחלקה"
+    hospital: "בית חולים"
+    beginDate: "ת.התחלה"
+    finishDate: "ת.סיום"
+    add: "הוסף בקשה"
+    status: "סטטוס"
+  files:
+    title: "קבצים מצורפים"
+    photo: "תמונת פספורט"
+    studyApproval: "טופס אישור לימודים"
+    requestForm: "טופס בקשה"
+    dormsForm: "טופס מעונות"
+  index:
+    createStudent: "צור סטודנט חדש"
+    searchByName: "חפש לפי שם"
+    searchByCountry: "חפש לפי מדינה"
+    chooseCountry: "בחר מדינה"
+    searchByStatus: "סנן לפי סטטוס"
+  application:
+    title: "ניהול חילופי סטודנטים"
+    management: "ניהול"
+    exit: "יציאה"
+    userName: "שם משתמש"
+    password: "סיסמא"
+    enter: "כניסה"
+    home: "ראשי"
+  management:
+    hospitals:
+      title: "ניהול רשימת בתי חולים"
+      warning: "שים לב, שינוי שם בית חולים יעדכן גם את כל הבקשות שנוצרו בעבר לבית חולים זה."
+    name: "שם"
+    departments:
+      title: "ניהול רשימת מחלקות"
+      warning: "שים לב, שינוי שם מחלקה יעדכן גם את כל הבקשות שנוצרו בעבר למחלקה זו."

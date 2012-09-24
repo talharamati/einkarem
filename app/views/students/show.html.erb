@@ -4,7 +4,7 @@
   <div class="topbar">
     <div class="btn-group floatleft">
       <%= link_to '<i class="icon-edit"></i> ערוך'.html_safe, edit_student_path(@student), class: 'btn' %>
-      <%= link_to '<i class="icon-trash icon-white"></i> מחק'.html_safe, @student, :method => :delete, data: { confirm: 'האם אתה בטוח שברצונך למחק את הסטודנט מהמערכת?' }, class: "btn btn-danger" %>
+      <%= link_to '<i class="icon-trash icon-white"></i> מחק'.html_safe, @student, :method => :delete, data: { confirm: t("students.deleteConfirm") }, class: "btn btn-danger" %>
 
     </div>
     <% country = Country.find(@student.country) %>
@@ -14,12 +14,12 @@
   <div class="row">
     <div class="span4">
       <div class="well">
-        <span class="status">סטטוס:
-          <%= best_in_place @student, :status, :type => :select, :collection => [["בטיפול", "בטיפול"], ["אושר", "אושר"], ["הגיע", "הגיע"], ["סיים", "סיים"]], :activator => "#editme7" %>
+        <span class="status"><%= t("students.status")%>:
+          <%= best_in_place @student, :status, :type => :select, :collection => [[t("students.statuses.treatment"),t("students.statuses.treatment")], [t("students.statuses.confirmed"), t("students.statuses.confirmed")], [t("students.statuses.came"), t("students.statuses.came")], [t("students.statuses.finished"), t("students.statuses.finished")]],html_attrs: { class: 'input-small' }, :activator => "#editStatus" %>
         </span>
-        <a id="editme7" href="#">(עדכן)</a>
+        <a id="editStatus" href="#">(<%= t("actions.update") %>)</a>
         <hr/>
-        <h4>משימות</h4>
+        <h4><%= t("tasks.title") %> </h4>
         <table class="table">
           <%= print_tasks(@student) %>
         </table>
@@ -30,38 +30,38 @@
         <% if @student.photo? %>
             <a href="<%= @student.photo.url %>"><%= image_tag @student.photo.url, :class => 'passportimg' %></a>
         <% end %>
-        <h3 class="nospace">פרטים אישיים</h3>
+        <h3 class="nospace"><%= t("students.details") %> </h3>
         <ul>
-          <li><b>דרכון:</b> <%=@student.passport %></li>
-          <li><b>תאריך לידה:</b><% if @student.birthday %> <%= l(@student.birthday) %>  (גיל: <%= @student.age  %>) <% end %> </li>
-          <li><b>אוניברסיטה:</b> <%= @student.university %></li>
-          <li><b>שנת לימודים:</b> <%= @student.year %></li>
-          <li><b>תאריך הגעה:</b> <%= l(@student.arrivalDate) %></li>
-          <li><b>שפות:</b> <%= @student.languages %></li>
-          <li><b>מחלקות שביצע בעבר:</b> <%= @student.pastDepartments %></li>
+          <li><b><%= t("students.passport") %>: </b> <%=@student.passport %></li>
+          <li><b><%= t("students.birthday") %>: </b><%= ldate(@student.birthday) %> <%= printAge(@student)  %> </li>
+          <li><b><%= t("students.university") %>: </b> <%= @student.university %></li>
+          <li><b><%= t("students.year") %>: </b> <%= @student.year %></li>
+          <li><b><%= t("students.arrivalDate") %>: </b><%= ldate(@student.arrivalDate) %></li>
+          <li><b><%= t("students.languages") %>: </b> <%= @student.languages %></li>
+          <li><b><%= t("students.pastDepartments") %></b>: <%= @student.pastDepartments %></li>
         </ul>
         <div class="row-fluid centered">
           <% if @student.study_approval? %>
-              <div class="span3"> <%= link_to '<i class="icon-file"></i> טופס אישור לימודים'.html_safe, @student.study_approval.url  %></div>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.studyApproval"), @student.study_approval.url  %></div>
           <% end %>
           <% if @student.request_form? %>
-              <div class="span3"> <%= link_to '<i class="icon-file"></i> טופס בקשה'.html_safe, @student.request_form.url  %></div>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.requestForm"), @student.request_form.url  %></div>
           <% end %>
           <% if @student.dorms_form? %>
-              <div class="span3"> <%= link_to '<i class="icon-file"></i> טופס מעונות'.html_safe, @student.dorms_form.url  %></div>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.dormsForm"), @student.dorms_form.url  %></div>
           <% end %>
         </div>
       </div>
       <div class="well">
-        <h3 class="nospace">בקשות</h3>
+        <h3 class="nospace"><%= t("requests.title") %></h3>
         <table class="table table-condensed">
           <thead>
           <tr>
-            <th>מחלקה</th>
-            <th>בית חולים</th>
-            <th>ת. התחלה</th>
-            <th>ת. סיום</th>
-            <th>סטטוס</th>
+            <th><%= t("requests.department") %></th>
+            <th><%= t("requests.hospital") %></th>
+            <th><%= t("requests.beginDate") %></th>
+            <th><%= t("requests.finishDate") %></th>
+            <th><%= t("requests.status") %></th>
           </tr>
           </thead>
           <tbody>
@@ -73,7 +73,8 @@
                     <td><%= r.beginDate %></td>
                     <td><%= r.finishDate %></td>
                     <td>
-                      <%= best_in_place r, :status,:path => student_path, :type => :select, :collection => [[1, "ממתין"], [2, "בטיפול"], [3, "אושר"], [4, "נדחה"]] %>
+                      <%= best_in_place r, :status,:path => student_updateRequest_path(r.id), :type => :select, :collection => [[1, "ממתין"], [2, "בטיפול"], [3, "אושר"], [4, "נדחה"]],html_attrs: { class: 'input-small' }, :activator => "#edit#{r.id}" %>
+                      <a id="edit<%=r.id %>"  href="#">(<%= t("actions.update") %>)</a>
                     </td>
                   </tr>
               <% end %>
@@ -92,6 +93,3 @@
 
 </div> <!-- /container -->
 
-<script>
-
-</script>

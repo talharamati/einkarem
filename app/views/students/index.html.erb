@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="span3">
-      <%= link_to 'צור סטודנט חדש', new_student_path, class: 'btn btn-large btn-primary span2 newstudent' %>
+      <%= link_to t("index.createStudent"), new_student_path, class: 'btn btn-large btn-primary span2 newstudent' %>
 
     </div>
     <div class="span9">
@@ -11,7 +11,7 @@
           <div class="input-append">
             <%= form_tag students_path, :method => 'get' do %>
                 <p>
-                  <%= text_field_tag :search, params[:search], :class=>"span4 btn-large", :id=>"search", :placeholder=>"חיפוש לפי שם" %>
+                  <%= text_field_tag :search, params[:search], :class=>"span4 btn-large", :id=>"search", :placeholder=>t("index.searchByName") %>
                   <button type="submit" class="btn btn-large"><i class="icon-search"></i></button>
                 </p>
             <% end %>
@@ -26,20 +26,20 @@
         <ul class="nav nav-tabs">
           <li class=<%= 'active' if @active == 'by_country' %>>
             <a><div class="li">
-              <h4>סנן לפי מדינה</h4>
+              <h4><%= t("index.searchByCountry") %> </h4>
               <%= form_tag students_path, :method => 'get', :class => 'submit_on_change' do %>
                   <p>
-                    <%= collection_select(:country_search, params[:country_search], Country.order('nameHeb ASC'), :id, :nameHeb, options = { :include_blank => "בחר מדינה", selected: params[:country_search]}, html_options = {:class => :span2, :id => 'country_search', :name => :country_search})  %>
+                    <%= collection_select(:country_search, params[:country_search], Country.where(id: Student.pluck(:country)).order('nameHeb ASC'), :id, :nameHeb, options = { :include_blank => t("index.chooseCountry"), selected: params[:country_search]}, html_options = {:class => :span2, :id => 'country_search', :name => :country_search})  %>
                   </p>
               <% end %>
             </div></a>
           </li>
           <li class="<%= 'active' if @active == 'by_status' %>">
             <a><div class="li">
-              <h4>סנן לפי סטטוס</h4>
+              <h4><%= t("index.searchByStatus") %></h4>
               <%= form_tag students_path, :method => 'get', :class => 'submit_on_change' do %>
                   <p>
-                    <%= select(:status_search, params[:status_search], options_for_select([['בטיפול', 'בטיפול'], ['אושר', 'אושר'], ['הגיע', 'הגיע'], ['סיים', 'סיים']]), options = { :include_blank => 'בחר סטטוס' },html_options = {:class => :span2, :id => 'status_search', :name => :status_search} ) %>
+                    <%= select(:status_search, params[:status_search], options_for_select([[t("students.statuses.treatment"),t("students.statuses.treatment")], [t("students.statuses.confirmed"), t("students.statuses.confirmed")], [t("students.statuses.came"), t("students.statuses.came")], [t("students.statuses.finished"), t("students.statuses.finished")]], params[:status_search]), options = { :include_blank => 'בחר סטטוס' },html_options = {:class => :span2, :id => 'status_search', :name => :status_search} ) %>
 
                   </p>
               <% end %>
@@ -53,10 +53,10 @@
       <table class="table table-hover">
         <thead>
         <tr>
-          <th>שם</th>
-          <th>תאריך הגעה</th>
-          <th>מדינה</th>
-          <th>סטטוס</th>
+          <th><%= t("students.name") %></th>
+          <th><%= t("students.arrivalDate") %> </th>
+          <th><%= t("students.country") %></th>
+          <th><%= t("students.status") %></th>
         </tr>
         </thead>
         <tbody>
@@ -66,7 +66,7 @@
                   <td><%= s.name %></td>
                   <td><%= s.arrivalDate %></td>
                   <% country = Country.find(s.country) %>
-                  <td><%= country.name %></td>
+                  <td><%= country.nameHeb %></td>
                   <td><%= s.status %></td>
                 </tr>
             <% end %>

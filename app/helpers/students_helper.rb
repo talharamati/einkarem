@@ -1,4 +1,18 @@
 module StudentsHelper
+  def ldate(dt, hash = {})
+    dt ? l(dt, hash) : nil
+  end
+
+  def printAge (student)
+    if !student.birthday
+      ""
+    else
+      now = Time.now.utc.to_date
+      age = now.year - student.birthday.year - (student.birthday.to_date.change(:year => now.year) > now ? 1 : 0)
+      "("+t("students.age")+": "+age.to_s+")"
+    end
+end
+
 
   def print_tasks(student)
     output = ''

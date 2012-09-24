@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   def new
     @hide_header = true
+    if session[:user_id]
+         redirect_to students_path
+    end
   end
 
   def create

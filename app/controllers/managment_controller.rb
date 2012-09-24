@@ -1,5 +1,6 @@
 class ManagmentController < ApplicationController
   def index
+    @management = true
     @departments = RefDepartment.all
     @hospitals = RefHospital.all
     @newHospital = RefHospital.new

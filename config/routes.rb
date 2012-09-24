@@ -14,7 +14,8 @@ Einkarem::Application.routes.draw do
   put "managment/update/(:obj)/(:id)"  => 'managment#update', as: 'managment_update'
   put "track/change/(:student)/(:task)"  => 'track#change', as: 'track_change'
   #put "ref_department/:id(.:format)"  => 'managment#update', as: 'ref_department'
-
+  put "track/update/(:obj)/(:id)"  => 'track#update', as: 'track_update'
+  put "students/updateRequest/(:id)"  => 'students#updateRequest', as: 'student_updateRequest'
   get "managment/destroy"
 
   get "sessions/new"

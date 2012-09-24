@@ -3,3 +3,6 @@
 
 en:
   hello: "Hello world"
+  students:
+    age: "גיל"
+    pastDepartments: "מחלקות שביצע בעבר"

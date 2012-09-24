@@ -2,7 +2,7 @@
   <td>
     <span><b><%= t("tasks.#{task}") %></b></span><br/>
     <a id="edit<%= task %>" href="#"><i class="icon-pencil"></i></a>
-    <%= best_in_place student.track, task+'C', path: student , activator: "#edit#{task}", html_attrs: { class: 'input-medium' }, nil: t('message.entercomment') %>
+    <%= best_in_place student.track, task+'C', path: track_update_path(obj: task+'C', id: student.id) , activator: "#edit#{task}", html_attrs: { class: 'input-medium' }, nil: t("message.entercomment") %>
   </td>
   <td>
     <%= link_to(raw("<i class=\"#{icon}\"></i>"), track_change_path(student: student, task: task), :method => :put,  :class => "btn btn-small") %>

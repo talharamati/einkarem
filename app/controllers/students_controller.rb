@@ -4,7 +4,6 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    params[:search]
     @students = Student.search(params[:search], params[:country_search], params[:status_search])
     @active = "by_country" if   params[:country_search]
     @active = "by_status" if params[:status_search]
@@ -89,6 +88,15 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to students_path }
       format.json { head :no_content }
+    end
+  end
+
+  def updateRequest
+    @request = Request.find(params[:id])
+    if @request.update_attributes(params[:request])
+      respond_with_bip(@request)
+    else
+      respond_with_bip(@request)
     end
   end
 end
