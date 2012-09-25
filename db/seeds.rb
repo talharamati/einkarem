@@ -244,5 +244,5 @@ User.create({ username: 'admin', password: 'ayelet' })
 	["זמביה","ZM","Zambia"],
 	["זימבבואה","ZW","Zimbabwe"]
 ].each do |record|
-	Country.create({ nameHeb: record[0], code: record[1], name: record[2]})
+	Country.create({ name_heb: record[0], code: record[1], name: record[2]})
 end

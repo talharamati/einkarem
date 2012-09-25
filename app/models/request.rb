@@ -3,6 +3,6 @@ class Request < ActiveRecord::Base
   belongs_to :student
 
   before_create do
-    self.status = I18n.t('')
+    self.status = 1 # 1 == pending
   end
 end

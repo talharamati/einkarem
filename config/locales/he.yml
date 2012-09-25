@@ -67,6 +67,7 @@ he:
     search_by_country: "חפש לפי מדינה"
     choose_country: "בחר מדינה"
     search_by_status: "סנן לפי סטטוס"
+    choose_status: "בחר סטטוס"
   application:
     title: "ניהול חילופי סטודנטים"
     management: "ניהול"
@@ -83,3 +84,5 @@ he:
     departments:
       title: "ניהול רשימת מחלקות"
       warning: "שים לב, שינוי שם מחלקה יעדכן גם את כל הבקשות שנוצרו בעבר למחלקה זו."
+  copyright: "ברק ארגמן / 054-7713188"
+  invalid_credentials: "שם משתמש / סיסמא שגוים"

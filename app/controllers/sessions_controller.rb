@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  skip_before_filter :authorize, only: [:new, :create]
+
   def new
     @hide_header = true
     if session[:user_id]
@@ -13,14 +16,14 @@ class SessionsController < ApplicationController
       redirect_to students_path
     else
       @hide_header = true
-      flash.now.alert = "Invalid username or password"
+      flash.now.alert = t('invalid_credentials')
       render "new"
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Logged out!"
+    redirect_to root_url
   end
 
 end

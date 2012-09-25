@@ -3,6 +3,7 @@
 //= require jquery.purr
 //= require ./vendor/jquery-ui-1.8.23.custom.min
 //= require ./vendor/jquery.ui.datepicker-he
+// require ./vendor/jquery.textext.1.3.0
 //= require ./vendor/bootstrap.min
 //= require best_in_place
 //= require jquery_nested_form

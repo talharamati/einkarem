@@ -34,3 +34,5 @@ gem 'nested_form'
 gem "paperclip-dropbox"
 
 gem 'thin' # web server
+
+gem "squeel" # for easy sql selections

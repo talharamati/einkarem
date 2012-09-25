@@ -39,7 +39,7 @@
               <div class="span6">
                 <p>
                   <label><%= t("students.country") %></label>
-                  <%= f.collection_select :country,  Country.order('name_heb ASC') ,  :id, :name_heb%>
+                  <%= f.collection_select :country,  Country.order('name_heb ASC') ,  :id, :name_heb %>
                 </p>
                 <p>
                   <label><%= t("students.arrival_date") %></label>
@@ -54,7 +54,7 @@
                 </p>
                 <p>
                   <label><%= t("students.past_departments") %></label>
-                  <%= f.text_field :past_departments %>
+                  <%= f.text_field :past_departments, id: 'departments_tags' %>
                 </p>
                 <p>
                   <label><%= t("students.passport") %></label>
@@ -124,10 +124,6 @@
   </div>
 
   <hr>
-
-  <footer>
-    <p>&copy; Company 2012</p>
-  </footer>
 
 </div> <!-- /container -->
 </html>

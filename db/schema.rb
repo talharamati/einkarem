@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924181804) do
+ActiveRecord::Schema.define(:version => 20120924234011) do
 
   create_table "countries", :force => true do |t|
     t.string "name_heb"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(:version => 20120924181804) do
     t.date     "arrival_date"
     t.string   "languages"
     t.string   "past_departments"
-    t.string   "status"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.string   "photo_file_name"
@@ -72,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20120924181804) do
     t.integer  "dorms_form_file_size"
     t.datetime "dorms_form_updated_at"
     t.string   "payment"
+    t.integer  "status"
   end
 
   create_table "tracks", :force => true do |t|

@@ -4,3 +4,10 @@ development:
   access_token: 'x097n4ixq74on5g'
   access_token_secret: '9r2ixq1hac0yimc'
   user_id: '80011693'
+
+production:
+  app_key: <%= ENV["DROPBOX_APP_KEY"] %>
+  app_secret: <%= ENV["DROPBOX_APP_SECRET"] %>
+  access_token: <%= ENV["DROPBOX_ACCESS_TOKEN"] %>
+  access_token_secret: <%= ENV["DROPBOX_ACCESS_TOKEN_SECRET"] %>
+  user_id: <%= ENV["DROPBOX_USER_ID"] %>

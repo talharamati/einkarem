@@ -8,6 +8,7 @@ class StudentsController < ApplicationController
     @active = "by_country" if   params[:country_search]
     @active = "by_status" if params[:status_search]
 
+    _load_constants
 
     respond_to do |format|
       format.html # index.html.erb
@@ -123,6 +124,26 @@ class StudentsController < ApplicationController
             title: t('requests.statuses.declined')
         }
     }
-    @request_statuses_array = request_statuses.values.map { |a| a.values }
+    @request_statuses_array = request_statuses.values.map { |s| s.values }
+
+    @student_statuses = {
+        treatment: {
+            id: 1,
+            title: t('students.statuses.treatment')
+        },
+        confirmed: {
+            id: 2,
+            title: t('students.statuses.confirmed')
+        },
+        came: {
+            id: 3,
+            title: t('students.statuses.came')
+        },
+        finished: {
+            id: 4,
+            title: t('students.statuses.finished')
+        }
+    }
+    #@student_statuses_array = @student_statuses.values.collect{|p| [p[:title],p[:id]]}
   end
 end

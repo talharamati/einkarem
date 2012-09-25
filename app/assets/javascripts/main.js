@@ -34,4 +34,5 @@ $(function() {
     $('form').live('nested:fieldAdded', function(event) {
         $(event.field).find('.datefield').removeClass('hasDatepicker').datepicker();
     });
+
 });

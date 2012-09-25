@@ -15,7 +15,7 @@
     <div class="span4">
       <div class="well">
         <span class="status"><%= t("students.status")%>:
-          <%= best_in_place @student, :status, :type => :select, :collection => [[t("students.statuses.treatment"),t("students.statuses.treatment")], [t("students.statuses.confirmed"), t("students.statuses.confirmed")], [t("students.statuses.came"), t("students.statuses.came")], [t("students.statuses.finished"), t("students.statuses.finished")]],html_attrs: { class: 'input-small' }, :activator => "#editStatus" %>
+          <%= best_in_place @student, :status, :type => :select, :collection => @student_statuses.values.collect{|p| [p[:id],p[:title]]},html_attrs: { class: 'input-small' }, :activator => "#editStatus" %>
         </span>
         <a id="editStatus" href="#">(<%= t("actions.update") %>)</a>
         <hr/>
@@ -70,8 +70,8 @@
                   <tr>
                     <td><%= r.department %></td>
                     <td><%= r.hospital %></td>
-                    <td><%= r.begin_date %></td>
-                    <td><%= r.finish_date %></td>
+                    <td><%= ldate(r.begin_date) %></td>
+                    <td><%= ldate(r.finish_date) %></td>
                     <td>
                       <%= best_in_place r, :status,:path => student_updateRequest_path(r.id), :type => :select, :collection => @request_statuses_array ,html_attrs: { class: 'input-small' }, :activator => "#edit#{r.id}" %>
                       <a id="edit<%=r.id %>"  href="#">(<%= t("actions.update") %>)</a>
@@ -86,10 +86,6 @@
   </div>
 
   <hr>
-
-  <footer>
-    <p>&copy; Company 2012</p>
-  </footer>
 
 </div> <!-- /container -->
 

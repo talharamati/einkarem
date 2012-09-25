@@ -18,12 +18,6 @@
 </head>
 
 <body>
-<% if !session[:user_id] && !@hide_header%>
-    <script type="text/javascript">
-        window.location.href="/sessions/new"
-    </script>
-<% end %>
-
 
 <% unless @hide_header %>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -51,6 +45,10 @@
 <% end %>
 
 <%= yield %>
+
+<footer class="container">
+  <p class="span12">&copy; 2012 <%= t('copyright') %> / barakarg@gmail.com</p>
+</footer>
 
 <%= javascript_include_tag 'footers' %>
 
