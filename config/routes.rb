@@ -18,7 +18,7 @@ Einkarem::Application.routes.draw do
   put "students/updateRequest/(:id)"  => 'students#updateRequest', as: 'student_updateRequest'
   get "managment/destroy"
 
-  get "sessions/new"
+  #get "sessions/new"
 
   post "track/changeDorms"
   post "track/changePayment"
@@ -29,12 +29,13 @@ Einkarem::Application.routes.draw do
 
   #match "track/change/(:field)"
 
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  post "" => "sessions#create", as: "log_in"
-  # get "sign_up" => "users#new", :as => "sign_up"
-  resources :users
-  resources :sessions
-
+  scope :protocol => 'https://', :constraints => { :protocol => 'https://' } do
+    get "log_out" => "sessions#destroy", :as => "log_out"
+    post "" => "sessions#create", as: "log_in"
+    # get "sign_up" => "users#new", :as => "sign_up"
+    resources :users
+    #resources :sessions
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
