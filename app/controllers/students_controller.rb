@@ -47,6 +47,9 @@ class StudentsController < ApplicationController
   def edit
     @student = Student.find(params[:id])
     @title = " עריכת כרטיס סטודנט: #{@student.name} "
+    (1-@student.requests.length).times do
+      @student.requests.build
+    end
   end
 
   # POST /students

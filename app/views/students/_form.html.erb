@@ -76,15 +76,17 @@
               </thead>
             </table>
 
-            <%= f.fields_for :requests, wrapper_tag: 'tr' do |request_form| %>
-                <%= request_form.collection_select :department,  RefDepartment.order('name ASC'),  :name, :name,{},{ :class => "input-medium"}%>
-                <%= request_form.collection_select :hospital,  RefHospital.order('name ASC'),  :name, :name,{},{ :class => "input-medium"}%>
-                <%= request_form.text_field :begin_date, :class => "datefield input-small", value: ldate(@student.arrival_date), :size => "16"  %>
-                <span class="add-on"><i class="icon-calendar"></i></span>
-                <%= request_form.text_field :finish_date, :class => "datefield input-small",value: ldate(@student.arrival_date), :size => "16"  %>
-                <span class="add-on"><i class="icon-calendar"></i></span>
-                <%= request_form.link_to_remove '<i class="icon-remove"></i>'.html_safe %>
-                <br>
+            <% @student.requests.each do |request| %>
+                <%= f.fields_for :requests, request, wrapper_tag: 'tr' do |request_form| %>
+                    <%= request_form.collection_select :department,  RefDepartment.order('name ASC'),  :name, :name,{},{ :class => "input-medium"}%>
+                    <%= request_form.collection_select :hospital,  RefHospital.order('name ASC'),  :name, :name,{},{ :class => "input-medium"}%>
+                    <%= request_form.text_field :begin_date, :class => "datefield input-small", value: ldate(request.begin_date), :size => "16"  %>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                    <%= request_form.text_field :finish_date, :class => "datefield input-small",value: ldate(request.finish_date), :size => "16"  %>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                    <%= request_form.link_to_remove '<i class="icon-remove"></i>'.html_safe %>
+                    <br>
+                <% end %>
             <% end %>
             <p><%= f.link_to_add t("requests.add"), :requests %></p>
 
