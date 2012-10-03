@@ -150,3 +150,7 @@ div.login a {
     font-size: 20px;
     font-weight: 200;
 }
+
+form h3 {
+    border-bottom: 1px solid #ccc;
+}

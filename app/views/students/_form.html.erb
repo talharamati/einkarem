@@ -9,7 +9,7 @@
       <div class="well">
         <%= nested_form_for @student do |f| %>
 
-            <legend><%= t("students.details") %></legend>
+            <h3><%= t("students.details") %></h3>
             <div class="row-fluid">
               <div class="span6">
                 <p>
@@ -63,7 +63,7 @@
               </div>
             </div>
 
-            <legend><%= t("requests.title") %></legend>
+            <h3><%= t("requests.title") %></h3>
 
             <table class="table table-condensed">
               <thead>
@@ -90,7 +90,7 @@
             <% end %>
             <p><%= f.link_to_add t("requests.add"), :requests %></p>
 
-            <legend><%= t("files.title") %></legend>
+            <h3><%= t("files.title") %></h3>
             <div class="row-fluid">
               <div class="span6">
                 <p>
@@ -115,7 +115,7 @@
             </div>
 
 
-            <legend></legend>
+            <h3></h3>
             <p style="text-align: center">
               <br/><span style="margin-left: 20px;">    <%= link_to  '<i class="icon-remove"></i> '.html_safe+t("actions.cancel"), students_path, :class=>"floatleft"%></span>
               <button type="submit" class="btn btn btn-success "><i class="icon-ok icon-white"></i><%= " "+t("actions.submit") %></button>

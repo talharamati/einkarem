@@ -1,0 +1,7 @@
+.lt-ie10 input , .lt-ie10 select , .lt-ie10 textarea {
+    font-family: Arial !important;
+}
+
+.lt-ie10 .brand {
+    width: 260px;
+}
