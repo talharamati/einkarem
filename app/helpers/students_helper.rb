@@ -30,7 +30,7 @@ end
       icon = 'icon-ok'
     else
       css_class = ''
-      icon = 'icon-th-large'
+      icon = 'icon-asterisk'
     end
 
     render partial: 'students/task', locals: {

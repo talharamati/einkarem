@@ -6,12 +6,14 @@ class StudentsController < ApplicationController
   before_filter :checkDate, only: [:update, :create]
 
   def checkDate
-    params[:student][:birthday] = fixDate(params[:student][:birthday])
-    params[:student][:arrival_date] = fixDate(params[:student][:arrival_date])
-    params[:student][ :requests_attributes].values.each { |r|
-      r[:begin_date] = fixDate(r[:begin_date])
-      r[:finish_date] = fixDate(r[:finish_date])
-    }
+    if params[:student] && params[:student][:birthday]
+      params[:student][:birthday] = fixDate(params[:student][:birthday])
+      params[:student][:arrival_date] = fixDate(params[:student][:arrival_date])
+      params[:student][ :requests_attributes].values.each { |r|
+        r[:begin_date] = fixDate(r[:begin_date])
+        r[:finish_date] = fixDate(r[:finish_date])
+      }
+    end
   end
 
   def fixDate(date)

@@ -25,6 +25,7 @@ class Student < ActiveRecord::Base
 
   has_attached_file :photo,
                     :storage => :dropbox,
+                    :styles => { :thumb => "180x180>" },
                     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
                     :dropbox_options => {
                         :path => proc { "studex-einkarem/files/#{id}/photo_#{photo.original_filename}" },
@@ -32,6 +33,7 @@ class Student < ActiveRecord::Base
                     }
   has_attached_file :study_approval,
                     :storage => :dropbox,
+                    :styles => { :thumb => "180x180>" },
                     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
                     :dropbox_options => {
                         :path => proc { "studex-einkarem/files/#{id}/studyapproval_#{study_approval.original_filename}" },
@@ -39,6 +41,7 @@ class Student < ActiveRecord::Base
                     }
   has_attached_file :request_form,
                     :storage => :dropbox,
+                    :styles => { :thumb => "180x180>" },
                     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
                     :dropbox_options => {
                         :path => proc { "studex-einkarem/files/#{id}/requestform_#{request_form.original_filename}" },
@@ -46,6 +49,7 @@ class Student < ActiveRecord::Base
                     }
   has_attached_file :dorms_form,
                     :storage => :dropbox,
+                    :styles => { :thumb => "180x180>" },
                     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
                     :dropbox_options => {
                         :path => proc { "studex-einkarem/files/#{id}/dormsform_#{dorms_form.original_filename}" },
@@ -59,8 +63,6 @@ class Student < ActiveRecord::Base
       self.payment= '0' if !self.payment
 
   end
-
-
 
   def self.search(search, countrySearch, statusSearch, requestSearch)
     unless search.blank?
