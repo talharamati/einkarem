@@ -16,9 +16,10 @@ end
 
   def print_tasks(student)
     output = ''
-    ['dorms', 'payment', 'laundry', 'library', 'laundry_back', 'library_back'].each do |t|
+    ['dorms','got_dorms', 'payment', 'laundry', 'library', 'laundry_back', 'library_back'].each do |t|
       output += print_task(student, t) unless (t == 'laundry_back' and !student.track['laundry']) or
-          (t == 'library_back' and !student.track['library'])
+          (t == 'library_back' and !student.track['library'])  or
+          (t == 'got_dorms' and !student.track['dorms'])
     end
     output.html_safe
   end
@@ -26,10 +27,10 @@ end
   def print_task(student, task)
     if student.track[task]
       css_class = 'success'
-      icon = 'icon-remove'
+      icon = 'icon-ok'
     else
       css_class = ''
-      icon = 'icon-ok'
+      icon = 'icon-th-large'
     end
 
     render partial: 'students/task', locals: {

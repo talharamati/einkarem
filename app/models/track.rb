@@ -2,6 +2,8 @@ class Track < ActiveRecord::Base
   belongs_to :student
   attr_accessible :dorms,
                   :dorms_c,
+                  :got_dorms,
+                  :got_dorms_c,
                   :laundry,
                   :laundry_back,
                   :laundry_back_c,

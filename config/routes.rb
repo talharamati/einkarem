@@ -17,7 +17,7 @@ Einkarem::Application.routes.draw do
   put "track/update/(:obj)/(:id)"  => 'track#update', as: 'track_update'
   put "students/updateRequest/(:id)"  => 'students#updateRequest', as: 'student_updateRequest'
   get "managment/destroy"
-
+  get "students/deleteFile/(:id)/(:type)" => 'students#deleteFile', as: 'student_deleteFile'
   #get "sessions/new"
 
   post "track/changeDorms"

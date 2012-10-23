@@ -3,10 +3,51 @@
 class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
+  before_filter :checkDate, only: [:update, :create]
+
+  def checkDate
+    params[:student][:birthday] = fixDate(params[:student][:birthday])
+    params[:student][:arrival_date] = fixDate(params[:student][:arrival_date])
+    params[:student][ :requests_attributes].values.each { |r|
+      r[:begin_date] = fixDate(r[:begin_date])
+      r[:finish_date] = fixDate(r[:finish_date])
+    }
+  end
+
+  def fixDate(date)
+    if date.nil?
+      return
+    end
+
+    day, month, year = date.split('/')
+
+    if day.nil? or month.nil? or year.nil?
+      date
+      return
+    end
+
+    if year.length == 2
+      year = (year.to_i < 40) ? '20'+year : '19'+year
+    end
+
+    date = day+'/'+month+'/'+year
+    date
+  end
+
+  def deleteFile
+    @student = Student.find(params[:id])
+    type = params[:type]
+    @student.update_attribute(type, nil)
+    @student.save
+    redirect_to @student
+  end
+
   def index
-    @students = Student.search(params[:search], params[:country_search], params[:status_search])
+    @students = Student.search(params[:search], params[:country_search], params[:status_search], params[:request_search])
+    @active = "by_name" if   params[:search]
     @active = "by_country" if   params[:country_search]
     @active = "by_status" if params[:status_search]
+    @active = "by_request" if params[:request_search]
 
     _load_constants
 
@@ -149,4 +190,6 @@ class StudentsController < ApplicationController
     }
     #@student_statuses_array = @student_statuses.values.collect{|p| [p[:title],p[:id]]}
   end
+
+
 end

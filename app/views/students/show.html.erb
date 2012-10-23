@@ -29,11 +29,13 @@
       <div class="well">
         <% if @student.photo? %>
             <a href="<%= @student.photo.url %>"><%= image_tag @student.photo.url, :class => 'passportimg' %></a>
-        <% end %>
+           <span class="deletephoto"><%= link_to '<i class="icon-remove"></i> '.html_safe, student_deleteFile_path(student: @student, type: 'photo'), data: { confirm: t("students.delete_file_confirm") }  %></span>
+      <% end %>
         <h3 class="nospace"><%= t("students.details") %> </h3>
         <ul>
           <li><b><%= t("students.passport") %>: </b> <%=@student.passport %></li>
           <li><b><%= t("students.birthday") %>: </b><%= ldate(@student.birthday) %> <%= printAge(@student)  %> </li>
+          <li><b><%= t("students.mail") %>: </b><%= @student.mail %></li>
           <li><b><%= t("students.university") %>: </b> <%= @student.university %></li>
           <li><b><%= t("students.year") %>: </b> <%= @student.year %></li>
           <li><b><%= t("students.arrival_date") %>: </b><%= ldate(@student.arrival_date) %></li>
@@ -42,13 +44,16 @@
         </ul>
         <div class="row-fluid centered">
           <% if @student.study_approval? %>
-              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.study_approval"), @student.study_approval.url  %></div>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.study_approval"), @student.study_approval.url  %>
+              <%= link_to '<i class="icon-remove"></i> '.html_safe, student_deleteFile_path(student: @student, type: 'study_approval'), data: { confirm: t("students.delete_file_confirm") }  %></div>
           <% end %>
           <% if @student.request_form? %>
-              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.request_form"), @student.request_form.url  %></div>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.request_form"), @student.request_form.url  %>
+              <%= link_to '<i class="icon-remove"></i> '.html_safe, student_deleteFile_path(student: @student, type: 'request_form'), data: { confirm: t("students.delete_file_confirm") }  %></div>
           <% end %>
           <% if @student.dorms_form? %>
-              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.dorms_form"), @student.dorms_form.url  %></div>
+              <div class="span3"> <%= link_to '<i class="icon-file"></i> '.html_safe+t("files.dorms_form"), @student.dorms_form.url  %>
+              <%= link_to '<i class="icon-remove"></i> '.html_safe, student_deleteFile_path(student: @student, type: 'dorms_form'), data: { confirm: t("students.delete_file_confirm") }  %></div>
           <% end %>
         </div>
       </div>
@@ -86,6 +91,5 @@
   </div>
 
   <hr>
-
 </div> <!-- /container -->
 

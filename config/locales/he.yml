@@ -16,6 +16,7 @@ he:
     payment: "שילם"
     library_back: "אסף פקדון ספריה"
     laundry_back: "אסף פקדון מכבסה"
+    got_dorms: "קיבל מעונות"
 
     title: "משימות"
   students:
@@ -30,6 +31,7 @@ he:
     arrival_date: "תאריך הגעה"
     year: "שנת לימודים"
     passport: "מספר דרכון"
+    mail: "מייל"
     statuses:
       treatment: "בטיפול"
       confirmed: "אושר"
@@ -40,6 +42,7 @@ he:
     delete_confirm: "האם אתה בטוח שברצונך למחוק את הסטודנט מהמערכת?"
     age: "גיל"
     past_departments: "מחלקות שביצע בעבר"
+    delete_file_confirm: "האם אתה בטוח שברצונך למחוק את הקובץ?"
   message:
     entercomment: "(הכנס הערה)"
   requests:
@@ -64,10 +67,12 @@ he:
   index:
     create_student: "צור סטודנט חדש"
     search_by_name: "חפש לפי שם"
-    search_by_country: "חפש לפי מדינה"
+    search_by_country: "סנן לפי מדינה"
     choose_country: "בחר מדינה"
     search_by_status: "סנן לפי סטטוס"
     choose_status: "בחר סטטוס"
+    search_by_request: "סנן לפי בקשה"
+    choose_department: "בחר מחלקה"
   application:
     title: "ניהול חילופי סטודנטים"
     management: "ניהול"

@@ -14,7 +14,8 @@ class Student < ActiveRecord::Base
                   :dorms_form,
                   :status,
                   :payment,
-                  :requests_attributes
+                  :requests_attributes,
+                  :mail
 
   default_scope order: 'arrival_date'
 
@@ -56,14 +57,15 @@ class Student < ActiveRecord::Base
   def default_values
       self.status= 1 if !self.status # 1 == treatment
       self.payment= '0' if !self.payment
+
   end
 
 
 
-  def self.search(search, countrySearch, statusSearch)
+  def self.search(search, countrySearch, statusSearch, requestSearch)
     unless search.blank?
       #find(:all, conditions: ['name LIKE ?', "%#{search}%"], :order => 'arrival_date')
-      where{{name.matches => "%#{search}%"}}
+      includes(:requests).where('requests.department' => search) | where{(name =~ "%#{search}%") | (mail =~ "%#{search}%")}
     else
       unless countrySearch.blank?
         #find(:all, :conditions => ['country = ?', "#{countrySearch}"], :order => 'arrival_date')
@@ -73,8 +75,12 @@ class Student < ActiveRecord::Base
           #find(:all, :conditions => ['status LIKE ?', "#{statusSearch}"], :order => 'arrival_date')
           where(status: statusSearch)
         else
+          unless requestSearch.blank?
+            includes(:requests).where('requests.department' => requestSearch)
+         else
           #find(:all, :conditions => ['status NOT LIKE ?', I18n.t('students.statuses.finished')], :order => 'arrival_date')
           where{{status.not_eq => 4}} # 4 == finished
+            end
         end
       end
     end

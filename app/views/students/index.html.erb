@@ -1,4 +1,5 @@
-<div class="container">
+<%= stylesheet_link_tag 'vendor/flags32' %>
+<div class="container f32">
 
   <div class="row">
     <div class="span3">
@@ -45,6 +46,16 @@
               <% end %>
             </div></a>
           </li>
+          <li class=<%= 'active' if @active == 'by_request' %>>
+            <a><div class="li">
+              <h4><%= t("index.search_by_request") %> </h4>
+              <%= form_tag students_path, :method => 'get', :class => 'submit_on_change' do %>
+                  <p>
+                    <%= collection_select(:request_search, params[:request_search], RefDepartment.all, :name, :name, options = { :include_blank => t("index.choose_department"), selected: params[:request_search]}, html_options = {:class => :span2, :id => 'request_search', :name => :request_search})  %>
+                  </p>
+              <% end %>
+            </div></a>
+          </li>
         </ul>
       </div>
 
@@ -63,10 +74,16 @@
         <% if @students %>
             <% @students.each  do |s|%>
                 <tr class="clickable" onclick="location.href='<%= student_path(s) %>'">
-                  <td><%= link_to s.name, s %></td>
+                  <td>
+                    <%= link_to s.name, s %>
+                    <% if @active == 'by_name' and !s.mail.blank? %>
+                        <br> (<%= s.mail%>)
+                    <% end %>
+                  </td>
                   <td><%= ldate(s.arrival_date) %></td>
                   <% country = Country.find(s.country) %>
-                  <td><%= country.name_heb %></td>
+                  <% flagCode = "flag #{country.code}".downcase %>
+                  <td><span class="country"><i class='<%=flagCode%>'></i> <%= country.name_heb %></span></td>
                   <td><%= @student_statuses.find{|k, v| v[:id] == s.status.to_i }.last[:title] %></td>
                 </tr>
             <% end %>
@@ -77,5 +94,4 @@
   </div>
 
   <hr>
-
 </div> <!-- /container -->

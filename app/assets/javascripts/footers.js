@@ -8,4 +8,3 @@
 //= require best_in_place
 //= require jquery_nested_form
 //= require main
-//= require iefixes
