@@ -7,7 +7,7 @@
         <hr/>
         <%= form_tag log_in_path do %>
             <%= text_field_tag :username, params[:username], :class => "span2", :placeholder =>t("application.username")  %>
-            <%= password_field_tag  :password, params[:username], :class => "span2", :placeholder => t("application.password") %>
+            <%= password_field_tag  :password, params[:password], :class => "span2", :placeholder => t("application.password") %>
             <button type="submit" class="btn"><%= t("application.enter") %></button>
             <% flash.each do |name, msg| %>
                 <%= content_tag :div, msg, :id => "flash#{name}" %>

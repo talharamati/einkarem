@@ -154,3 +154,7 @@ div.login a {
     font-size: 20px;
     font-weight: 200;
 }
+
+span.email {
+    font-size:11px;
+}

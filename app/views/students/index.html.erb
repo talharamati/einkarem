@@ -61,7 +61,7 @@
 
     </div>
     <div class="span9">
-      <table class="table table-hover">
+      <table class="table table-hover table-condensed">
         <thead>
         <tr>
           <th><%= t("students.name") %></th>
@@ -76,9 +76,7 @@
                 <tr class="clickable" onclick="location.href='<%= student_path(s) %>'">
                   <td>
                     <%= link_to s.name, s %>
-                    <% if @active == 'by_name' and !s.mail.blank? %>
-                        <br> (<%= s.mail%>)
-                    <% end %>
+                    <br><span class="email">(<%= s.mail%>)</span>
                   </td>
                   <td><%= ldate(s.arrival_date) %></td>
                   <% country = Country.find(s.country) %>
