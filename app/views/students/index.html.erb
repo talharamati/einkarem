@@ -76,7 +76,7 @@
                 <tr class="clickable" onclick="location.href='<%= student_path(s) %>'">
                   <td>
                     <%= link_to s.name, s %>
-                    <br><span class="email">(<%= s.mail%>)</span>
+                    <br><span class="email"><%= s.mail%></span>
                   </td>
                   <td><%= ldate(s.arrival_date) %></td>
                   <% country = Country.find(s.country) %>

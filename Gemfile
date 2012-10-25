@@ -7,8 +7,10 @@ group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
+# production only
 group :production do
   gem 'pg'
+  gem 'newrelic_rpm' # for monitoring (and for heroku keep up pings)
 end
 
 gem 'bcrypt-ruby', :require => 'bcrypt'
