@@ -66,7 +66,7 @@ he:
     dorms_form: "טופס מעונות"
   index:
     create_student: "צור סטודנט חדש"
-    search_by_name: "חפש לפי שם"
+    search_by_name_university_mail_department: "חפש לפי שם, מחלקה, אוניברסיטה או כתובת מייל"
     search_by_country: "סנן לפי מדינה"
     choose_country: "בחר מדינה"
     search_by_status: "סנן לפי סטטוס"

@@ -67,7 +67,7 @@ class Student < ActiveRecord::Base
   def self.search(search, countrySearch, statusSearch, requestSearch)
     unless search.blank?
       #find(:all, conditions: ['name LIKE ?', "%#{search}%"], :order => 'arrival_date')
-      includes(:requests).where('requests.department' => search) | where{(name =~ "%#{search}%") | (mail =~ "%#{search}%")}
+      includes(:requests).where('requests.department' => search) | where{(name =~ "%#{search}%") | (mail =~ "%#{search}%") | (university =~ "%#{search}%")}
     else
       unless countrySearch.blank?
         #find(:all, :conditions => ['country = ?', "#{countrySearch}"], :order => 'arrival_date')
