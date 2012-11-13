@@ -15,7 +15,7 @@ group :production do
 end
 
 gem 'bcrypt-ruby', :require => 'bcrypt'
-gem 'paperclip', '~> 3.0'
+gem 'paperclip'
 
 # Gems used only for assets and not required
 # in production environments by default.

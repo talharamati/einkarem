@@ -33,7 +33,6 @@ class Student < ActiveRecord::Base
                     }
   has_attached_file :study_approval,
                     :storage => :dropbox,
-                    :styles => { :thumb => "180x180>" },
                     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
                     :dropbox_options => {
                         :path => proc { "studex-einkarem/files/#{id}/studyapproval_#{study_approval.original_filename}" },
@@ -41,7 +40,6 @@ class Student < ActiveRecord::Base
                     }
   has_attached_file :request_form,
                     :storage => :dropbox,
-                    :styles => { :thumb => "180x180>" },
                     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
                     :dropbox_options => {
                         :path => proc { "studex-einkarem/files/#{id}/requestform_#{request_form.original_filename}" },
@@ -49,7 +47,6 @@ class Student < ActiveRecord::Base
                     }
   has_attached_file :dorms_form,
                     :storage => :dropbox,
-                    :styles => { :thumb => "180x180>" },
                     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
                     :dropbox_options => {
                         :path => proc { "studex-einkarem/files/#{id}/dormsform_#{dorms_form.original_filename}" },

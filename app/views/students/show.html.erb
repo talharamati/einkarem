@@ -71,7 +71,7 @@
           </thead>
           <tbody>
           <% if @student.requests %>
-              <% @student.requests.each  do |r|%>
+              <% @student.requests.order('begin_date').each  do |r|%>
                   <tr>
                     <td><%= r.department %></td>
                     <td><%= r.hospital %></td>

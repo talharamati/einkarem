@@ -80,7 +80,7 @@
               </thead>
             </table>
             <% i=12 %>
-            <% @student.requests.each do |request| %>
+            <% @student.requests.order('begin_date').each do |request| %>
                 <%= f.fields_for :requests, request, wrapper_tag: 'tr' do |request_form| %>
                     <%= request_form.collection_select :department,  RefDepartment.order('name ASC'),  :name, :name,{},{ :class => "input-medium", tabindex: i}%>
                     <%= request_form.collection_select :hospital,  RefHospital.order('name ASC'),  :name, :name,{},{ :class => "input-medium",tabindex: (i+1)} %>
